@@ -45,12 +45,178 @@
 local lush = require('lush')
 local hsl = lush.hsl
 
+
 -- LSP/Linters mistakenly show `undefined global` errors in the spec, they may
 -- support an annotation like the following. Consult your server documentation.
 ---@diagnostic disable: undefined-global
 local theme = lush(function(injected_functions)
   local sym = injected_functions.sym
+
+  local dark_gray =     hsl("#303030")
+  local mid_gray =      hsl("#878787")
+  local default_white = hsl("#FFFFFF")
+  
+  local lavender =     hsl("#dfafff")
+  local light_purple = hsl("#ffdfff")
+  local gray_purple =  hsl("#afafd7")
+
+  local pink =         hsl("#ffafdf")
+  local light_blue =   hsl("#afffff")
+  local mint =         hsl("#afffd7")
+  local light_yellow = hsl("#ffffaf")
+
+  local dark_pink =  hsl("#ff005f")
+  local dark_green = hsl("#00875f")
+  local dark_blue =  hsl("#0087af")
+
   return {
+    
+    Normal { fg=default_white, bg=dark_gray },
+    Cursor { fg=dark_gray, bg=default_white },
+    Visual { bg=mid_gray }, 
+    CursorLine { bg=dark_gray }, 
+    CursorColumn { bg=dark_gray }, 
+    ColorColumn { bg=dark_gray }, 
+    LineNr { fg=mid_gray, bg=dark_gray }, 
+    VertSplit { fg=mid_gray, bg=dark_gray }, 
+    MatchParen { fg=pink }, 
+    StatusLine { fg=default_white, bg=mid_gray }, 
+    StatusLineNC { fg=default_white, bg=mid_gray }, 
+    Pmenu { bg=dark_gray }, 
+    PmenuSel { fg=lavender, bg=mid_gray }, 
+    IncSearch { fg=dark_gray, bg=light_yellow }, 
+    Search { }, 
+    Directory { fg=lavender }, 
+    Folded { fg=light_yellow, bg=dark_gray }, 
+    TabLine { fg=default_white, bg=dark_gray }, 
+    TabLineSel { fg=light_purple, bg=dark_gray }, 
+    TabLineFill { fg=default_white, bg=dark_gray }, 
+                                                          
+    Define { fg=gray_purple }, 
+    DiffAdd { fg=default_white, bg=dark_green, gui="bold" },
+    DiffDelete { fg=dark_pink }, 
+    DiffChange { fg=default_white, bg=dark_gray }, 
+    DiffText  { fg=default_white, bg=dark_blue, gui="bold" },
+    ErrorMsg { fg=default_white, bg=dark_pink }, 
+    WarningMsg { fg=default_white, bg=dark_pink }, 
+                                                          
+    Boolean { fg=lavender }, 
+    Character { fg=lavender }, 
+    Comment { fg=gray_purple }, 
+    Conditional { fg=pink }, 
+    Constant { fg=mint }, 
+    Float { fg=lavender }, 
+    Function { fg=light_purple }, 
+    Identifier { fg=light_purple }, 
+    Keyword { fg=pink }, 
+    Label { fg=light_yellow }, 
+    NonText { fg=default_white }, 
+    Number { fg=mint }, 
+    Operator { fg=pink }, 
+    PreProc { fg=pink }, 
+    Special { fg=light_purple }, 
+    SpecialKey { fg=default_white, bg=dark_gray }, 
+    Statement { fg=pink }, 
+    SpellBad { fg=pink, gui="underline" },
+    SpellCap { fg=light_blue, gui="underline" },
+    StorageClass { fg=mint  }, 
+    String { fg=light_blue }, 
+    Tag { fg=pink }, 
+    Title { fg=default_white, gui="bold" },
+    Todo  {fg=light_yellow, gui="inverse,bold" },
+    Type { fg=mint }, 
+    Underlined { gui="underline" },
+
+    Delimiter { fg=light_blue },
+    Macro { Define },
+    SpecialChar { fg=lavender },
+    Repeat {fg=lavender},
+    Exception {fg=mint},
+    Typedef {fg=lavender},
+    Structure {fg=pink},
+    Include {fg=pink},
+    Debug {fg=light_yellow},
+                                                      
+-- rubyClass, s:pink, s:none, "NONE")
+-- rubyFunction, s:light_purple, s:none, "NONE")
+-- rubyInterpolationDelimiter", s:none, s:none, "NONE")
+-- rubySymbol", s:light_purple, s:none, "NONE")
+-- rubyConstant", s:mint, s:none, "NONE")
+-- rubyStringDelimiter", s:light_blue, s:none, "NONE")
+-- rubyBlockParameter", s:pink, s:none, "NONE")
+-- rubyBlock", s:default_white, s:none, "NONE")
+-- rubyInstanceVariable", s:pink, s:none, "NONE")
+-- rubyInclude", s:pink, s:none, "NONE")
+-- rubyGlobalVariable", s:light_yellow, s:none, "NONE")
+-- rubyRegexp", s:light_yellow, s:none, "NONE")
+-- rubyRegexpDelimiter", s:light_yellow, s:none, "NONE")
+-- rubyEscape", s:lavender, s:none, "NONE")
+-- rubyControl", s:lavender, s:none, "NONE")
+-- rubyRepeat", s:lavender, s:none, "NONE")
+-- rubyConditional", s:pink, s:none, "NONE")
+-- rubyClassVariable", s:light_yellow, s:none, "NONE")
+-- rubyOperator", s:pink, s:none, "NONE")
+-- rubyException", s:mint, s:none, "NONE")
+-- rubyPseudoVariable", s:mint, s:none, "NONE")
+-- rubyRailsUserClass", s:mint, s:none, "NONE")
+-- rubyRailsARAssociationMethod", s:mint, s:none, "NONE")
+-- rubyRailsARMethod", s:mint, s:none, "NONE")
+-- rubyRailsRenderMethod", s:mint, s:none, "NONE")
+-- rubyRailsMethod", s:mint, s:none, "NONE")
+-- rubyArrayDelimiter", s:pink, s:none, "NONE")
+-- rubyInterpolation", s:light_purple, s:none, "NONE")
+-- rubyInterpolationDelimiter", s:pink, s:none, "NONE")
+                                                      
+-- erubyDelimiter", s:none, s:none, "NONE")
+-- erubyRailsMethod", s:mint, s:none, "NONE")
+                                                      
+-- htmlTag", s:none, s:none, "NONE")
+-- htmlEndTag", s:none, s:none, "NONE")
+-- htmlTagName", s:none, s:none, "NONE")
+-- htmlArg", s:none, s:none, "NONE")
+-- htmlSpecialChar", s:lavender, s:none, "NONE")
+                                                      
+-- javaScriptFunction", s:mint, s:none, "NONE")
+-- javaScriptRailsFunction", s:mint, s:none, "NONE")
+-- javaScriptBraces", s:none, s:none, "NONE")
+                                                      
+-- yamlKey", s:pink, s:none, "NONE")
+-- yamlAnchor", s:none, s:none, "NONE")
+-- yamlAlias", s:none, s:none, "NONE")
+-- yamlDocumentHeader", s:light_yellow, s:none, "NONE")
+-- yamlPlainScalar", s:light_blue, s:none, "NONE")
+-- yamlBlockCollectionItemStart", s:pink, s:none, "NONE")
+                                                      
+-- cssURL", s:dark_pink, s:none, "NONE")
+-- cssFunctionName", s:mint, s:none, "NONE")
+-- cssColor", s:lavender, s:none, "NONE")
+-- cssPseudoClassId", s:light_yellow, s:none, "NONE")
+-- cssClassName", s:light_yellow, s:none, "NONE")
+-- cssValueLength", s:lavender, s:none, "NONE")
+-- cssCommonAttr", s:mint, s:none, "NONE")
+-- cssBraces", s:none, s:none, "NONE")
+                                                      
+-- jsThis", s:pink, s:none, "NONE")
+-- jsBraces", s:light_purple, s:none, "NONE")
+-- jsGlobalObjects", s:mint, s:none, "NONE")
+                                                      
+-- coffeeCurly", s:lavender, s:none, "NONE")
+-- coffeeObjAssign", s:light_purple, s:none, "NONE")
+                                                      
+-- cjsxAttribProperty", s:lavender, s:none, "NONE")
+                                                      
+-- markdownH1", s:light_blue, s:none, "NONE")
+-- markdownH2", s:light_blue, s:none, "NONE")
+-- markdownH3", s:light_blue, s:none, "NONE")
+-- markdownH4", s:light_blue, s:none, "NONE")
+-- markdownH5", s:light_blue, s:none, "NONE")
+-- markdownH6", s:light_blue, s:none, "NONE")
+-- markdownHeadingDelimiter", s:light_blue, s:none, "NONE
+-- markdownRule", s:light_blue, s:none, "NONE")
+                                                      
+-- SyntasticError", s:dark_gray, s:pink, "NONE")
+-- SyntasticWarning", s:dark_gray, s:light_blue, "NONE")
+
     -- The following are the Neovim (as of 0.8.0-dev+100-g371dfb174) highlight
     -- groups, mostly used for styling UI elements.
     -- Comment them out and add your own properties to override the defaults.
@@ -96,7 +262,6 @@ local theme = lush(function(injected_functions)
     -- MsgSeparator   { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
     -- MoreMsg        { }, -- |more-prompt|
     -- NonText        { }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-    -- Normal         { }, -- Normal text
     -- NormalFloat    { }, -- Normal text in floating windows.
     -- FloatBorder    { }, -- Border of floating windows.
     -- FloatTitle     { }, -- Title of floating windows.
@@ -198,31 +363,31 @@ local theme = lush(function(injected_functions)
 
     -- See :h diagnostic-highlights, some groups may not be listed, submit a PR fix to lush-template!
     --
-    -- DiagnosticError            { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-    -- DiagnosticWarn             { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-    -- DiagnosticInfo             { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-    -- DiagnosticHint             { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-    -- DiagnosticOk               { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-    -- DiagnosticVirtualTextError { } , -- Used for "Error" diagnostic virtual text.
-    -- DiagnosticVirtualTextWarn  { } , -- Used for "Warn" diagnostic virtual text.
-    -- DiagnosticVirtualTextInfo  { } , -- Used for "Info" diagnostic virtual text.
-    -- DiagnosticVirtualTextHint  { } , -- Used for "Hint" diagnostic virtual text.
-    -- DiagnosticVirtualTextOk    { } , -- Used for "Ok" diagnostic virtual text.
-    -- DiagnosticUnderlineError   { } , -- Used to underline "Error" diagnostics.
-    -- DiagnosticUnderlineWarn    { } , -- Used to underline "Warn" diagnostics.
-    -- DiagnosticUnderlineInfo    { } , -- Used to underline "Info" diagnostics.
-    -- DiagnosticUnderlineHint    { } , -- Used to underline "Hint" diagnostics.
-    -- DiagnosticUnderlineOk      { } , -- Used to underline "Ok" diagnostics.
-    -- DiagnosticFloatingError    { } , -- Used to color "Error" diagnostic messages in diagnostics float. See |vim.diagnostic.open_float()|
-    -- DiagnosticFloatingWarn     { } , -- Used to color "Warn" diagnostic messages in diagnostics float.
-    -- DiagnosticFloatingInfo     { } , -- Used to color "Info" diagnostic messages in diagnostics float.
-    -- DiagnosticFloatingHint     { } , -- Used to color "Hint" diagnostic messages in diagnostics float.
-    -- DiagnosticFloatingOk       { } , -- Used to color "Ok" diagnostic messages in diagnostics float.
-    -- DiagnosticSignError        { } , -- Used for "Error" signs in sign column.
-    -- DiagnosticSignWarn         { } , -- Used for "Warn" signs in sign column.
-    -- DiagnosticSignInfo         { } , -- Used for "Info" signs in sign column.
-    -- DiagnosticSignHint         { } , -- Used for "Hint" signs in sign column.
-    -- DiagnosticSignOk           { } , -- Used for "Ok" signs in sign column.
+    --DiagnosticError            { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+    --DiagnosticWarn             { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+    --DiagnosticInfo             { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+    --DiagnosticHint             { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+    --DiagnosticOk               { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+    --DiagnosticVirtualTextError { } , -- Used for "Error" diagnostic virtual text.
+    --DiagnosticVirtualTextWarn  { } , -- Used for "Warn" diagnostic virtual text.
+    --DiagnosticVirtualTextInfo  { } , -- Used for "Info" diagnostic virtual text.
+    --DiagnosticVirtualTextHint  { } , -- Used for "Hint" diagnostic virtual text.
+    --DiagnosticVirtualTextOk    { } , -- Used for "Ok" diagnostic virtual text.
+    --DiagnosticUnderlineError   { } , -- Used to underline "Error" diagnostics.
+    --DiagnosticUnderlineWarn    { } , -- Used to underline "Warn" diagnostics.
+    --DiagnosticUnderlineInfo    { } , -- Used to underline "Info" diagnostics.
+    --DiagnosticUnderlineHint    { } , -- Used to underline "Hint" diagnostics.
+    --DiagnosticUnderlineOk      { } , -- Used to underline "Ok" diagnostics.
+    --DiagnosticFloatingError    { } , -- Used to color "Error" diagnostic messages in diagnostics float. See |vim.diagnostic.open_float()|
+    --DiagnosticFloatingWarn     { } , -- Used to color "Warn" diagnostic messages in diagnostics float.
+    --DiagnosticFloatingInfo     { } , -- Used to color "Info" diagnostic messages in diagnostics float.
+    --DiagnosticFloatingHint     { } , -- Used to color "Hint" diagnostic messages in diagnostics float.
+    --DiagnosticFloatingOk       { } , -- Used to color "Ok" diagnostic messages in diagnostics float.
+    --DiagnosticSignError        { } , -- Used for "Error" signs in sign column.
+    --DiagnosticSignWarn         { } , -- Used for "Warn" signs in sign column.
+    --DiagnosticSignInfo         { } , -- Used for "Info" signs in sign column.
+    --DiagnosticSignHint         { } , -- Used for "Hint" signs in sign column.
+    --DiagnosticSignOk           { } , -- Used for "Ok" signs in sign column.
 
     -- Tree-Sitter syntax groups.
     --
@@ -241,51 +406,51 @@ local theme = lush(function(injected_functions)
     --
     -- For more information see https://github.com/rktjmp/lush.nvim/issues/109
 
-    -- sym"@text.literal"      { }, -- Comment
-    -- sym"@text.reference"    { }, -- Identifier
-    -- sym"@text.title"        { }, -- Title
-    -- sym"@text.uri"          { }, -- Underlined
-    -- sym"@text.underline"    { }, -- Underlined
-    -- sym"@text.todo"         { }, -- Todo
-    -- sym"@comment"           { }, -- Comment
-    -- sym"@punctuation"       { }, -- Delimiter
-    -- sym"@constant"          { }, -- Constant
-    -- sym"@constant.builtin"  { }, -- Special
-    -- sym"@constant.macro"    { }, -- Define
-    -- sym"@define"            { }, -- Define
-    -- sym"@macro"             { }, -- Macro
-    -- sym"@string"            { }, -- String
-    -- sym"@string.escape"     { }, -- SpecialChar
-    -- sym"@string.special"    { }, -- SpecialChar
-    -- sym"@character"         { }, -- Character
-    -- sym"@character.special" { }, -- SpecialChar
-    -- sym"@number"            { }, -- Number
-    -- sym"@boolean"           { }, -- Boolean
-    -- sym"@float"             { }, -- Float
-    -- sym"@function"          { }, -- Function
-    -- sym"@function.builtin"  { }, -- Special
-    -- sym"@function.macro"    { }, -- Macro
-    -- sym"@parameter"         { }, -- Identifier
-    -- sym"@method"            { }, -- Function
-    -- sym"@field"             { }, -- Identifier
-    -- sym"@property"          { }, -- Identifier
-    -- sym"@constructor"       { }, -- Special
-    -- sym"@conditional"       { }, -- Conditional
-    -- sym"@repeat"            { }, -- Repeat
-    -- sym"@label"             { }, -- Label
-    -- sym"@operator"          { }, -- Operator
-    -- sym"@keyword"           { }, -- Keyword
-    -- sym"@exception"         { }, -- Exception
-    -- sym"@variable"          { }, -- Identifier
-    -- sym"@type"              { }, -- Type
-    -- sym"@type.definition"   { }, -- Typedef
-    -- sym"@storageclass"      { }, -- StorageClass
-    -- sym"@structure"         { }, -- Structure
-    -- sym"@namespace"         { }, -- Identifier
-    -- sym"@include"           { }, -- Include
-    -- sym"@preproc"           { }, -- PreProc
-    -- sym"@debug"             { }, -- Debug
-    -- sym"@tag"               { }, -- Tag
+    sym"@text.literal"      { Comment }, -- Comment
+    sym"@text.reference"    { Identifier }, -- Identifier
+    sym"@text.title"        { Title }, -- Title
+    sym"@text.uri"          { Underlined }, -- Underlined
+    sym"@text.underline"    { Underlined }, -- Underlined
+    sym"@text.todo"         { Todo }, -- Todo
+    sym"@comment"           { Comment }, -- Comment
+    sym"@punctuation"       {Delimiter    }, -- Delimiter
+    sym"@constant"          {Constant     }, -- Constant
+    sym"@constant.builtin"  {Special      }, -- Special
+    sym"@constant.macro"    {Define       }, -- Define
+    sym"@define"            {Define       }, -- Define
+    sym"@macro"             {Macro        }, -- Macro
+    sym"@string"            {String       }, -- String
+    sym"@string.escape"     {SpecialChar  }, -- SpecialChar
+    sym"@string.special"    {SpecialChar  }, -- SpecialChar
+    sym"@character"         {Character    }, -- Character
+    sym"@character.special" {SpecialChar  }, -- SpecialChar
+    sym"@number"            {Number       }, -- Number
+    sym"@boolean"           {Boolean      }, -- Boolean
+    sym"@float"             {Float        }, -- Float
+    sym"@function"          {Function     }, -- Function
+    sym"@function.builtin"  {Special      }, -- Special
+    sym"@function.macro"    {Macro        }, -- Macro
+    sym"@parameter"         {Identifier   }, -- Identifier
+    sym"@method"            {Function     }, -- Function
+    sym"@field"             {Identifier   }, -- Identifier
+    sym"@property"          {Identifier   }, -- Identifier
+    sym"@constructor"       {Special      }, -- Special
+    sym"@conditional"       {Conditional  }, -- Conditional
+    sym"@repeat"            {Repeat       }, -- Repeat
+    sym"@label"             {Label        }, -- Label
+    sym"@operator"          {Operator     }, -- Operator
+    sym"@keyword"           {Keyword      }, -- Keyword
+    sym"@exception"         {Exception    }, -- Exception
+    sym"@variable"          {Identifier   }, -- Identifier
+    sym"@type"              {Type         }, -- Type
+    sym"@type.definition"   {Typedef      }, -- Typedef
+    sym"@storageclass"      {StorageClass }, -- StorageClass
+    sym"@structure"         {Structure    }, -- Structure
+    sym"@namespace"         {Identifier   }, -- Identifier
+    sym"@include"           {Include      }, -- Include
+    sym"@preproc"           {PreProc      }, -- PreProc
+    sym"@debug"             {Debug        }, -- Debug
+    sym"@tag"               {Tag          }, -- Tag
 }
 end)
 
