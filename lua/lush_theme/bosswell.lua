@@ -53,6 +53,7 @@ local theme = lush(function(injected_functions)
   local sym = injected_functions.sym
 
   local dark_gray =     hsl("#303030")
+  local darker_gray =   hsl("#202020")
   local mid_gray =      hsl("#878787")
   local default_white = hsl("#FFFFFF")
   
@@ -80,8 +81,8 @@ local theme = lush(function(injected_functions)
     LineNr { fg=mid_gray, bg=dark_gray }, 
     VertSplit { fg=mid_gray, bg=dark_gray }, 
     MatchParen { fg=pink }, 
-    StatusLine { fg=default_white, bg=mid_gray }, 
-    StatusLineNC { fg=default_white, bg=mid_gray }, 
+    StatusLine { fg=default_white, bg=darker_gray }, 
+    StatusLineNC { fg=default_white, bg=darker_gray }, 
     Pmenu { bg=dark_gray }, 
     PmenuSel { fg=lavender, bg=mid_gray }, 
     IncSearch { fg=dark_gray, bg=light_yellow }, 
